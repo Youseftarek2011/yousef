@@ -1,0 +1,606 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" type="text/css" href="cid:css-9828c323-5f57-4b5f-b732-aea72f444a8c@mhtml.blink" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#05080c">
+  <title>QUREO Solver</title>
+  
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://qureosolver.xyz/styles.css?v=23">
+  
+</head>
+<body style="">
+  <div id="vip-root">
+    <div class="vip-orb vip-orb-one"></div>
+    <div class="vip-orb vip-orb-two"></div>
+
+    <section id="vip-gate" class="vip-gate">
+      <div class="vip-login-card">
+        <div class="vip-login-logo">Q<small>VIP</small></div>
+        <p class="vip-kicker">Private access · No queue</p>
+        <h1>حل كيريو <span>VIP</span></h1>
+        <p class="vip-login-copy">مساحة خاصة لإدارة الحلول ومتابعة كل خطوة لحظة بلحظة. ادخل بكلمة سر حسابك وابدأ فورًا.</p>
+        <form id="vip-login-form">
+          <div class="vip-field">
+            <label for="vip-login-key">كلمة سر حساب VIP</label>
+            <div class="vip-password">
+              <input id="vip-login-key" class="vip-input" type="password" autocomplete="current-password" placeholder="اكتب كلمة السر" required="">
+              <button id="vip-toggle-key" class="vip-reveal" type="button">عرض</button>
+            </div>
+          </div>
+          <button id="vip-login-button" class="vip-primary vip-full" type="submit">دخول للوحة <span>←</span></button>
+          <p id="vip-login-error" class="vip-message vip-error" role="alert"></p>
+        </form>
+        <div class="vip-login-features"><span>تشغيل فوري</span><span>خصوصية لكل حساب</span><span>نشاط مباشر</span></div>
+        <p class="vip-buy-hint">ماعندكش حساب؟ <a href="https://qureosolver.xyz/#quick-section">اشترِ حسابات VIP من هنا</a> — تأكيد فوري بفودافون كاش.</p>
+      </div>
+    </section>
+
+    <div id="vip-dashboard" class="vip-page vip-hidden">
+      <header class="vip-header">
+        <div class="vip-brand">
+          <div class="vip-brand-mark">Q</div>
+          <div><strong>QUREO <span style="color:#a78bfa">VIP</span></strong><small>PRIVATE SOLVER DASHBOARD</small></div>
+        </div>
+        <div class="vip-header-actions">
+          <span id="vip-account-chip" class="vip-account-chip">VIP</span>
+          <button id="vip-logout" class="vip-secondary" type="button">تسجيل خروج</button>
+        </div>
+      </header>
+
+      <section class="vip-hero">
+        <div>
+          <p id="vip-role-label" class="vip-kicker">VIP WORKSPACE</p>
+          <h1>أهلًا بيك في <span>مساحتك.</span></h1>
+          <p id="vip-limit-note" class="vip-hero-copy">ابدأ حل جديد وتابع العمليات الخاصة بك من مكان واحد.</p>
+        </div>
+        <span class="vip-no-queue">تشغيل مباشر بدون طابور</span>
+      </section>
+
+      <section class="vip-stats" aria-label="إحصائيات الحلول">
+        <div class="vip-stat"><i></i><strong id="vip-stat-running">0</strong><span>حلول شغالة الآن</span></div>
+        <div class="vip-stat"><i></i><strong id="vip-stat-finished">0</strong><span>حلول مكتملة</span></div>
+        <div class="vip-stat"><i></i><strong id="vip-stat-total">0</strong><span>كل العمليات الظاهرة</span></div>
+      </section>
+
+      <div class="vip-layout">
+        <section class="vip-panel vip-solve-panel">
+          <div class="vip-panel-heading">
+            <div><h2>ابدأ حل جديد</h2><p>بيانات الطالب والكورس، والباقي علينا.</p></div>
+            <span class="vip-step">01</span>
+          </div>
+          <form id="vip-solve-form">
+            <div class="vip-two-fields">
+              <div class="vip-field">
+                <label for="vip-student-id">كود الطالب</label>
+                <input id="vip-student-id" class="vip-input" type="text" autocomplete="off" placeholder="كود كيريو" required="">
+              </div>
+              <div class="vip-field">
+                <label for="vip-student-password">كلمة سر الطالب</label>
+                <input id="vip-student-password" class="vip-input" type="password" autocomplete="off" placeholder="كلمة سر كيريو" required="">
+              </div>
+            </div>
+            <label class="vip-label">نوع المدرسة</label>
+            <div class="vip-track-tabs" style="margin-top:8px">
+              <button class="vip-track vip-active" type="button" data-vip-track="gov">حكومي</button>
+              <button class="vip-track" type="button" data-vip-track="lang">لغات</button>
+            </div>
+            <div class="vip-field">
+              <label for="vip-course">الكورس</label>
+              <select id="vip-course" class="vip-select" required=""></select>
+            </div>
+            <button id="vip-start-button" class="vip-primary vip-full" type="submit">ابدأ الحل الآن <span>⚡</span></button>
+            <p id="vip-solve-message" class="vip-message" role="status"></p>
+          </form>
+          <p class="vip-inline-note">الطلب بينفذ مباشرة، من غير انتظار أو طابور.</p>
+        </section>
+
+        <section class="vip-panel vip-live-panel">
+          <div class="vip-panel-heading">
+            <div><h2 id="vip-log-title">النشاط المباشر</h2><p>اختار أي عملية من القائمة لعرض تفاصيلها.</p></div>
+            <span class="vip-live-dot">LIVE</span>
+          </div>
+          <pre id="vip-log" class="vip-log">ابدأ عملية أو اختار واحدة من القائمة عشان تشوف النشاط هنا…</pre>
+        </section>
+      </div>
+
+      <section id="vip-bulk-panel" class="vip-panel vip-bulk-panel vip-hidden">
+        <div class="vip-panel-heading">
+          <div><h2>حل جماعي</h2><p>الصق الطلاب بأي ترتيب: ID ثم كلمة السر ثم السنة/الكورس. بدون كورس = أولى جافا.</p></div>
+          <span class="vip-admin-badge">ADMIN ONLY</span>
+        </div>
+        <div class="vip-field">
+          <label for="vip-bulk-input">الطلاب والكورسات</label>
+          <textarea id="vip-bulk-input" class="vip-bulk-input" spellcheck="false" placeholder="4539052
+EroesroAW
+اولي
+40539532
+ESPOEWA"></textarea>
+        </div>
+        <div class="vip-bulk-actions">
+          <button id="vip-bulk-start" class="vip-primary" type="button">بدء الحل الجماعي ⚡</button>
+          <button id="vip-bulk-clear" class="vip-secondary" type="button">مسح</button>
+        </div>
+        <p id="vip-bulk-message" class="vip-message" role="status"></p>
+        <div id="vip-bulk-results" class="vip-bulk-results"></div>
+      </section>
+
+      <section id="vip-admin-panel" class="vip-panel vip-admin-panel vip-hidden">
+        <div class="vip-panel-heading">
+          <div><h2>لوحة الأدمن</h2><p>الطلبات والحسابات والمدفوعات والعمليات — كلها من مكان واحد.</p></div>
+          <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+            <button id="vip-free-toggle" class="vip-small-button" type="button" title="فتح أو قفل الحل المجاني للطلاب">الحل المجاني: —</button>
+            <span class="vip-admin-badge">MAIN ADMIN</span>
+          </div>
+        </div>
+        <nav class="vip-admin-tabs" id="vip-admin-tabs">
+          <button class="vip-admin-tab vip-on" data-vip-admin-tab="orders" type="button">🧾 الطلبات</button>
+          <button class="vip-admin-tab" data-vip-admin-tab="accounts" type="button">👑 حسابات VIP</button>
+          <button class="vip-admin-tab" data-vip-admin-tab="sms" type="button">📩 الدفع / SMS</button>
+          <button class="vip-admin-tab" data-vip-admin-tab="runs" type="button">⚡ كل العمليات</button>
+        </nav>
+
+        <div class="vip-admin-pane vip-on" data-vip-admin-pane="orders">
+          <div class="vip-chip-row" id="vip-overview-chips"></div>
+          <div class="vip-tools">
+            <input id="vip-order-search" class="vip-search" type="search" placeholder="ابحث بالكود أو رقم المحوّل أو الباقة…" aria-label="بحث في الطلبات">
+            <select id="vip-order-page-size" class="vip-page-size" aria-label="عدد الطلبات في الصفحة">
+              <option value="10" selected="">10 / صفحة</option>
+              <option value="20">20 / صفحة</option>
+              <option value="30">30 / صفحة</option>
+              <option value="40">40 / صفحة</option>
+              <option value="50">50 / صفحة</option>
+            </select>
+          </div>
+          <div class="vip-order-filter" id="vip-order-filter">
+            <button class="vip-admin-tab vip-on" data-vip-order-filter="all" type="button">الكل</button>
+            <button class="vip-admin-tab" data-vip-order-filter="pending" type="button">معلّقة 💛</button>
+            <button class="vip-admin-tab" data-vip-order-filter="approved" type="button">متأكدة ✓</button>
+            <button class="vip-admin-tab" data-vip-order-filter="expired" type="button">منتهية</button>
+          </div>
+          <div class="vip-table-wrap">
+            <table class="vip-table">
+              <thead><tr><th>الكود</th><th>الباقة</th><th>السعر</th><th>رقم المحوّل</th><th>الحالة</th><th>الإنشاء</th><th>حلول</th><th></th></tr></thead>
+              <tbody id="vip-orders-body"></tbody>
+            </table>
+          </div>
+          <p class="vip-empty" id="vip-orders-empty" style="display: none;">مفيش طلبات هنا</p>
+          <div class="vip-pager" id="vip-orders-pager"></div>
+        </div>
+
+        <div class="vip-admin-pane" data-vip-admin-pane="accounts">
+          <div class="vip-instant-section">
+            <div class="vip-panel-heading">
+              <div><h2>إنشاء VIP فوري</h2><p>اختار عدد الطلاب — الحساب يتعمل في ثانية، وتنسخ الرابط وكلمة السر للعميل.</p></div>
+              <span class="vip-admin-badge">INSTANT</span>
+            </div>
+            <div class="vip-instant-options" id="vip-instant-options">
+              <button class="vip-instant-option" data-vip-instant="5" type="button"><strong>5</strong><small>طلاب · 50 ج</small></button>
+              <button class="vip-instant-option" data-vip-instant="10" type="button"><strong>10</strong><small>طلاب · 80 ج</small></button>
+              <button class="vip-instant-option" data-vip-instant="35" type="button"><strong>35</strong><small>طلاب · 250 ج</small></button>
+              <button class="vip-instant-option" data-vip-instant="50" type="button"><strong>50</strong><small>طلاب · 325 ج</small></button>
+            </div>
+            <div id="vip-instant-result" class="vip-instant-result vip-hidden"></div>
+            <p id="vip-instant-message" class="vip-message" role="status"></p>
+          </div>
+          <form id="vip-account-form" class="vip-account-form">
+            <div class="vip-field"><label for="vip-new-name">اسم الحساب</label><input id="vip-new-name" class="vip-input" type="text" maxlength="60" placeholder="مثال: حساب أحمد" required=""></div>
+            <div class="vip-field"><label for="vip-new-password">كلمة سر جديدة</label><input id="vip-new-password" class="vip-input" type="text" minlength="12" maxlength="128" autocomplete="off" placeholder="12 حرف على الأقل" required=""></div>
+            <div class="vip-field"><label for="vip-new-limit">أقصى تشغيل</label><input id="vip-new-limit" class="vip-input" type="number" min="1" max="60" value="2" required=""></div>
+            <div class="vip-field"><label for="vip-new-max-accounts">MAX ACCOUNTS</label><input id="vip-new-max-accounts" class="vip-input" type="number" min="0" max="100000" value="0" title="0 = غير محدود" required=""></div>
+            <button id="vip-create-button" class="vip-primary" type="submit">إنشاء حساب +</button>
+          </form>
+          <p id="vip-account-message" class="vip-message" role="status"></p>
+          <div class="vip-tools">
+            <input id="vip-account-search" class="vip-search" type="search" placeholder="ابحث باسم حساب VIP…" aria-label="بحث في حسابات VIP">
+            <select id="vip-account-page-size" class="vip-page-size" aria-label="عدد الحسابات في الصفحة">
+              <option value="10" selected="">10 / صفحة</option>
+              <option value="20">20 / صفحة</option>
+              <option value="30">30 / صفحة</option>
+              <option value="40">40 / صفحة</option>
+              <option value="50">50 / صفحة</option>
+            </select>
+            <button id="vip-prune-accounts" class="vip-small-button" type="button" title="حذف كل حساب خلص عدده (10/10، 20/20، …)">🧹 حذف المنتهية</button>
+          </div>
+          <div id="vip-accounts" class="vip-accounts"></div>
+          <div class="vip-pager" id="vip-accounts-pager"></div>
+        </div>
+
+        <div class="vip-admin-pane" data-vip-admin-pane="sms">
+          <h3 class="vip-admin-sub">📥 آخر رسائل وصلت للويبهوك</h3>
+          <div class="vip-table-wrap">
+            <table class="vip-table">
+              <thead><tr><th>الوقت</th><th>المصدر</th><th>التوكن</th><th>النص</th></tr></thead>
+              <tbody id="vip-sms-hits"></tbody>
+            </table>
+          </div>
+          <p class="vip-empty" id="vip-sms-hits-empty" style="display: none;">مفيش رسائل لسه</p>
+          <h3 class="vip-admin-sub vip-admin-gap">⚠️ تحويلات ملهاش طلب مطابق</h3>
+          <div class="vip-table-wrap">
+            <table class="vip-table">
+              <thead><tr><th>الوقت</th><th>الرقم</th><th>المبالغ</th><th>السبب</th></tr></thead>
+              <tbody id="vip-sms-unmatched"></tbody>
+            </table>
+          </div>
+          <p class="vip-empty" id="vip-sms-unmatched-empty" style="display: none;">مفيش حاجة غير مطابقة 🎉</p>
+        </div>
+
+        <div class="vip-admin-pane" data-vip-admin-pane="runs">
+          <h3 class="vip-admin-sub">⚡ حلول الحل السريع</h3>
+          <div class="vip-table-wrap">
+            <table class="vip-table">
+              <thead><tr><th>الكود</th><th>الكورس</th><th>الطالب</th><th>الحالة</th><th>بدأ</th><th></th></tr></thead>
+              <tbody id="vip-admin-quick-runs"></tbody>
+            </table>
+          </div>
+          <p class="vip-empty" id="vip-admin-quick-empty" style="display: none;">مفيش حلول دلوقتي</p>
+          <h3 class="vip-admin-sub vip-admin-gap">👑 حلول VIP</h3>
+          <div class="vip-table-wrap">
+            <table class="vip-table">
+              <thead><tr><th>المالك</th><th>الطالب</th><th>الكورس</th><th>الحالة</th><th>بدأ</th><th></th></tr></thead>
+              <tbody id="vip-admin-vip-runs"></tbody>
+            </table>
+          </div>
+          <p class="vip-empty" id="vip-admin-vip-empty" style="display: none;">مفيش حلول VIP دلوقتي</p>
+        </div>
+      </section>
+
+      <section class="vip-panel vip-runs-panel">
+        <div class="vip-panel-heading">
+          <div><h2 id="vip-runs-title">عملياتك الحالية</h2><p id="vip-runs-subtitle">آخر العمليات والنشاط الخاص بك فقط — بدون عرض كلمات السر.</p></div>
+          <button id="vip-refresh" class="vip-secondary" type="button">تحديث ↻</button>
+        </div>
+        <div id="vip-runs" class="vip-runs"><div class="vip-empty">لسه مفيش عمليات. ابدأ أول حل من الأعلى.</div></div>
+      </section>
+
+      <footer class="vip-footer"><span>QUREO VIP · PRIVATE WORKSPACE</span><span>تشغيل أسرع. متابعة أوضح. تحكم كامل.</span></footer>
+    </div>
+  </div>
+
+  <div id="public-site">
+  <div class="backdrop" aria-hidden="true">
+    <div class="aurora aurora-a"></div>
+    <div class="noise"></div>
+  </div>
+
+  <!-- STEP 0a: school type -->
+  <div id="category-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="category-title">
+    <div class="modal-card category-panel">
+      <div class="modal-kicker" data-i18n="categoryKicker">أهم خطوة — ظبطها صح</div>
+      <h2 id="category-title" data-i18n="categoryTitle">حسابك على كيريو بالعربي ولا بالإنجليزي؟</h2>
+      <p class="modal-intro" data-i18n="categoryIntro">دي أهم خطوة! لو حسابك بالعربي اختار «حكومي»، ولو بالإنجليزي اختار «لغات». الاختيار الغلط بيخلي الحل يقف من أوله.</p>
+      <div class="category-grid two-col">
+        <button class="category-option" id="category-government" type="button">
+          <span class="category-code">AR</span>
+          <span class="category-text"><strong data-i18n="govCard">حكومي</strong><small data-i18n="govCardDesc">حساب كيريو بالعربي — أولى وتانية بكالوريا</small></span>
+          <span class="category-arrow">→</span>
+        </button>
+        <button class="category-option" id="category-language" type="button">
+          <span class="category-code">EN</span>
+          <span class="category-text"><strong data-i18n="langCard">لغات</strong><small data-i18n="langCardDesc">حساب كيريو بالإنجليزي — جافاسكربت وبايثون وثقافة مالية</small></span>
+          <span class="category-arrow">→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 0b: year -->
+  <div id="year-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="year-title">
+    <div class="modal-card compact-card">
+      <div class="modal-kicker" id="year-kicker">مدارس حكومي</div>
+      <h2 id="year-title" data-i18n="yearTitle">اختار سنتك</h2>
+      <p id="year-body">سنتك بتحدد الكورس الحكومي وعدد الفصول الصحيح.</p>
+      <div class="year-buttons">
+        <button class="year-choice" id="year-one" type="button"><strong id="year-one-title">أولى بكالوريا</strong><small id="year-one-desc">جافاسكربت · 42 فصل</small></button>
+        <button class="year-choice" id="year-two" type="button"><strong id="year-two-title">تانية بكالوريا</strong><small id="year-two-desc">جافاسكربت (54 فصل) · بايثون · ثقافة مالية</small></button>
+      </div>
+      <button id="year-back" class="button button-ghost full-width" type="button" data-i18n="yearBack">رجوع لنوع المدرسة</button>
+    </div>
+  </div>
+
+  <!-- Wrong-course popup -->
+  <div id="mismatch-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="mismatch-title">
+    <div class="modal-card compact-card mismatch-card">
+      <div class="mismatch-icon">!</div>
+      <div class="modal-kicker" data-i18n="mismatchKicker">اختيار غير صحيح</div>
+      <h2 id="mismatch-title">انت اخترت لغات أو حكومي بالغلط 😅</h2>
+      <p id="mismatch-body">الحساب ده مش مشترك في الكورس اللي اخترته، عشان كده الحل وقف. دوس «تعديل الاختيار» واختار نوع مدرستك الصح.</p>
+      <button id="mismatch-retry" class="button button-primary full-width" type="button" data-i18n="mismatchRetry">تعديل الاختيار</button>
+      <button id="mismatch-close" class="button button-ghost full-width" type="button" data-i18n="mismatchClose">إغلاق</button>
+    </div>
+  </div>
+
+  <!-- Invalid-login correction popup -->
+  <div id="credentials-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="credentials-title">
+    <div class="modal-card compact-card mismatch-card credentials-card">
+      <div class="mismatch-icon">!</div>
+      <h2 id="credentials-title" data-i18n="credentialsTitle">معلوماتك غلط! اكتب الكود صح:</h2>
+      <form id="credentials-form">
+        <div class="credentials-fields">
+          <label for="credential-code" data-i18n="credentialCode">الكود</label>
+          <input id="credential-code" name="code" type="text" autocomplete="username">
+          <label for="credential-password" data-i18n="credentialPassword">الباسورد</label>
+          <input id="credential-password" name="password" type="password" autocomplete="current-password">
+        </div>
+        <p class="credentials-track-title" data-i18n="credentialsTrack">متاكد حكومي او لغات؟</p>
+        <div class="year-buttons credentials-track-options">
+          <button class="year-choice credentials-track-option" type="button" data-credential-track="government" aria-pressed="false"><strong data-i18n="trackGov">حكومي</strong></button>
+          <button class="year-choice credentials-track-option" type="button" data-credential-track="language" aria-pressed="false"><strong data-i18n="trackLang">لغات</strong></button>
+        </div>
+        <p id="credential-error" class="status" role="alert"></p>
+        <button id="credential-retry" class="button button-primary full-width" type="submit" data-i18n="credentialRetry">أبدا الحل مباشرة (بدون طابور)</button>
+        <button id="credentials-close" class="button button-ghost full-width" type="button" data-i18n="mismatchClose">إغلاق</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FAST SOLVING: Vodafone Cash order -> auto-approve -> quick solve -->
+  <div id="quick-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="quick-modal-title">
+    <div class="modal-card quick-card">
+      <button id="quick-close" class="quick-close" type="button" aria-label="إغلاق">✕</button>
+      <div class="modal-kicker">فودافون كاش · تأكيد تلقائي</div>
+
+      <div id="quick-wallet-box" class="quick-wallet hidden">
+        <small>حوّل على رقم فودافون كاش ده</small>
+        <div class="quick-wallet-row">
+          <strong id="quick-wallet-number">01101928199</strong>
+          <button id="quick-copy-wallet" class="button button-secondary" type="button">نسخ 📋</button>
+        </div>
+      </div>
+
+      <div class="quick-step active" data-quick-step="vip-packs">
+        <h2>اختار باقة VIP</h2>
+        <p class="quick-plan-hint">حساب واحد على /vip0101 بيحل عدد طلاب على قد الباقة — كل طالب بيكورسه كامل، من غير طابور.</p>
+        <div class="quick-packs">
+          <button class="quick-pack" type="button" data-quick-pack="vip5"><strong>5 طلاب</strong><small>50 جنيه</small><span>10 ج / طالب</span></button>
+          <button class="quick-pack" type="button" data-quick-pack="vip10"><strong>10 طلاب</strong><small>80 جنيه</small><span>8 ج / طالب</span></button>
+          <button class="quick-pack" type="button" data-quick-pack="vip35"><strong>35 طالب</strong><small>250 جنيه</small><span>≈7 ج / طالب</span></button>
+          <button class="quick-pack" type="button" data-quick-pack="vip50"><strong>50 طالب</strong><small>325 جنيه</small><span>6.5 ج / طالب</span></button>
+          <button class="quick-pack popular" type="button" data-quick-pack="vip100"><strong>100 طالب</strong><small>600 جنيه</small><span>أوفر باقة · 6 ج / طالب</span></button>
+        </div>
+      </div>
+
+      <div class="quick-step" data-quick-step="order">
+        <h2 id="quick-modal-title">ادفع وابدأ في دقيقة</h2>
+        <div class="quick-plan-summary">
+          <span id="quick-plan-name">تانية بكالوريا كامل</span>
+          <strong id="quick-plan-price">30 جنيه</strong>
+        </div>
+        <p id="quick-plan-hint" class="quick-plan-hint">جافاسكربت + بايثون + ثقافة مالية</p>
+        <form id="quick-order-form">
+          <label for="quick-phone">رقم فودافون اللي هتحوّل منه</label>
+          <input id="quick-phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="01xxxxxxxxx">
+          <p class="wizard-hint">التأكيد تلقائي 100%: أول ما التحويل يوصل رقم فودافون اللي كتبته، الطلب بيتأكد لوحده. ولو حوّلت قبل ما تعمل الطلب — عادي: اعمل الطلب بنفس الرقم وهيتأكد على طول. متكتبش غير رقم فودافون كاش صح. بعد إنشاء الطلب عندك 45 دقيقة بس للتحويل — بعدها الطلب بينتهي.</p>
+          <p id="quick-order-message" class="status" role="status"></p>
+          <button id="quick-order-button" class="button button-primary full-width" type="submit"><span>حوّلت — إنشاء الطلب</span> <span>→</span></button>
+        </form>
+      </div>
+
+      <div class="quick-step" data-quick-step="pending">
+        <h2>استنى التأكيد التلقائي…</h2>
+        <p class="quick-code-line">كود طلبك: <strong id="quick-code-display" class="quick-code">QS-----</strong><small>احفظه لو قفلت الصفحة</small></p>
+        <div id="quick-proof-section">
+          <h3>ارفع سكرين التحويل</h3>
+          <form id="quick-proof-form">
+            <label for="quick-proof-file">سكرين التحويل إجباري</label>
+            <input id="quick-proof-file" name="proof" type="file" accept="image/jpeg,image/png,image/webp" required>
+            <p id="quick-proof-message" class="status" role="status">لا يمكن متابعة الطلب قبل رفع سكرين التحويل.</p>
+            <button id="quick-proof-button" class="button button-primary full-width" type="submit">تأكيد ورفع السكرين</button>
+          </form>
+        </div>
+        <div id="quick-wait-section" class="quick-wait" style="display:none">
+          <span class="quick-spinner" aria-hidden="true"></span>
+          <p>بنراقب وصول تحويل <b id="quick-pending-price">30 جنيه</b> جنيه على <b id="quick-pending-wallet">01101928199</b>… أول ما يوصل، الصفحة هتتقل للخطوة اللي بعد كده لوحدها.</p>
+        </div>
+        <p id="quick-countdown" class="quick-countdown" role="timer"></p>
+        <p id="quick-pending-note" class="status" role="status"></p>
+      </div>
+
+      <div class="quick-step" data-quick-step="expired">
+        <h2>انتهت صلاحية الطلب</h2>
+        <p id="quick-expired-text"></p>
+        <button id="quick-expired-retry" class="button button-primary full-width" type="button">طلب جديد — لو حوّلت، هيتفعّل فورًا</button>
+      </div>
+
+      <div class="quick-step" data-quick-step="solve">
+        <h2>اتأكد الدفع ✓ ابدأ الحل</h2>
+        <p class="quick-approved-note">الباقة: <b id="quick-approved-plan"></b></p>
+        <form id="quick-solve-form">
+          <label>نوع حسابك على كيريو</label>
+          <div class="quick-track-tabs">
+            <button class="quick-track active" type="button" data-quick-track="gov">حكومي (عربي)</button>
+            <button class="quick-track" type="button" data-quick-track="lang">لغات (إنجليزي)</button>
+          </div>
+          <label for="quick-course">الكورس</label>
+          <select id="quick-course" class="quick-select"></select>
+          <div class="quick-two">
+            <div><label for="quick-id">كود الطالب</label><input id="quick-id" type="text" autocomplete="off" placeholder="كود كيريو"></div>
+            <div><label for="quick-password">كلمة السر</label><input id="quick-password" type="password" autocomplete="off" placeholder="كلمة سر كيريو"></div>
+          </div>
+          <p id="quick-solve-message" class="status" role="status"></p>
+          <button id="quick-solve-button" class="button button-primary full-width" type="submit"><span>ابدأ الحل السريع</span> <span>⚡</span></button>
+        </form>
+      </div>
+
+      <div class="quick-step" data-quick-step="accounts">
+        <h2>حسابك اهو 🎉</h2>
+        <p class="quick-approved-note" id="quick-accounts-plan"></p>
+        <p id="quick-accounts-solves" class="quick-solves"></p>
+        <div class="quick-pass-card">
+          <small>كلمة السر — دي اللي هتكتبها في صفحة /vip0101</small>
+          <div class="quick-pass-row">
+            <code id="quick-password-display">—</code>
+            <button id="quick-accounts-copy" type="button">نسخ</button>
+          </div>
+        </div>
+        <p id="quick-accounts-message" class="status" role="status"></p>
+        <p class="wizard-hint">سجّل دخول من صفحة <b>/vip0101</b> بكلمة السر دي. جوّه اللوحة: كود كل طالب + كلمة سر كيريو بتاعته + الكورس — الحل بيبدأ على طول. تقدر تجيب كلمة السر تاني أي وقت بنفس كود الطلب.</p>
+        <a class="button button-secondary full-width" href="https://qureosolver.xyz/vip0101"><span>دخول VIP</span> <span>←</span></a>
+      </div>
+
+      <div class="quick-step" data-quick-step="run">
+        <div class="quick-run-head">
+          <h2>الحل السريع شغّال</h2>
+          <span id="quick-run-badge" class="running-badge active">شغّال الآن</span>
+        </div>
+        <p class="quick-run-course">الكورس: <b id="quick-run-course"></b></p>
+        <div class="quick-run-stats">
+          <div class="quick-run-stat"><strong id="quick-run-count">0</strong><span>فصول اتخلصت</span></div>
+        </div>
+        <pre id="quick-run-log" class="quick-log">بنجهّز الحل… لحظات ويبدأ النشاط هنا.</pre>
+        <p id="quick-run-hint" class="wizard-hint">تقدر تقفل المودال — الحل شغال على السيرفر. ترجع تتابع أي وقت من زر «متابعة الطلب» أو بإدخال كود الطلب.</p>
+        <p id="quick-run-final" class="quick-final hidden"></p>
+        <button id="quick-retry-solve" class="button button-primary full-width hidden" type="button">🔄 جرب تاني ببيانات صح</button>
+        <button id="quick-new-order" class="button button-ghost full-width hidden" type="button">طلب جديد</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="topbar-wrap stuck">
+    <header class="topbar">
+      <a class="brand" href="https://qureosolver.xyz/" aria-label="QUREO Solver home">
+        <span class="brand-symbol">Q</span>
+        <span class="brand-text"><strong data-i18n="brandName">حل كيريو</strong><small data-i18n="brandSub">QUREO</small></span>
+      </a>
+      <div class="topbar-links">
+        <span class="live-pill" aria-hidden="true"><i></i>متصل</span>
+        <button class="theme-toggle" type="button" aria-label="الوضع الليلي / الفاتح — Light / Dark">
+          <span class="icon-sun" aria-hidden="true">☀</span>
+          <span class="icon-moon" aria-hidden="true">☾</span>
+        </button>
+      </div>
+    </header>
+  </div>
+
+  <main class="shell">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span></span><b data-i18n="heroKicker">منصة واحدة. كل الكورسات.</b></div>
+        <h1><span data-i18n="heroLine1">اختارها. حلها.</span> <em data-i18n="heroLine2">وتقدّم للأمام.</em></h1>
+        <p data-i18n="heroBody">حل سريع ودقيق للكورسات مع نشاط مباشر خاص بكل جلسة. من غير زحمة—بس الكورسات المناسبة لسنتك.</p>
+        <div class="hero-tags"><span data-i18n="tagActive">30 حل نشط</span><span data-i18n="tagQueue">طابور ذكي</span><span data-i18n="tagProgress">تقدم مباشر</span></div>
+      </div>
+    </section>
+
+    <section class="quick-band" aria-label="الحل السريع — دفع فودافون كاش">
+      <div class="quick-strip">
+        <div class="quick-strip-info">
+          <span class="quick-strip-bolt" aria-hidden="true">⚡</span>
+          <div class="quick-strip-copy">
+            <strong>الحل السريع بدون طابور</strong>
+            <small>فودافون كاش · الدفع بيتأكد لوحده في ثواني</small>
+          </div>
+        </div>
+        <div class="quick-strip-actions">
+          <button class="quick-chip" type="button" data-quick-plan="course">كورس واحد <b>15 ج</b></button>
+          <button class="quick-chip" type="button" data-quick-plan="culture">ثقافة مالية <b>20 ج</b></button>
+          <button class="quick-chip popular" type="button" data-quick-plan="full">تانية كاملة <b>30 ج</b></button>
+          <button id="quick-vip-button" class="quick-chip vipgo" type="button" title="حساب VIP يحل عدد طلاب على قد الباقة">VIP <b>⚡</b></button>
+        </div>
+      </div>
+      <div id="quick-resume" class="quick-resume hidden">
+        <span class="quick-resume-text">عندك طلب سريع شغّال: <b id="quick-resume-code"></b></span>
+        <button id="quick-resume-button" class="button button-secondary" type="button">متابعة الطلب ←</button>
+      </div>
+      <details class="quick-manual-details">
+        <summary>معاك كود طلب سريع؟ متابعة من هنا</summary>
+        <div class="quick-manual">
+          <input id="quick-resume-input" type="text" placeholder="مثال QS7K2P9" autocomplete="off">
+          <button id="quick-resume-go" class="button button-ghost" type="button">متابعة</button>
+        </div>
+      </details>
+    </section>
+
+    <section class="layout">
+      <div class="panel login-panel">
+        <div class="panel-heading"><span class="section-number">01</span><div><h2 data-i18n="startTitle">ابدأ حل جديد</h2><p data-i18n="startSubtitle">أربع خطوات سريعة. والباقي علينا.</p></div></div>
+        <form id="solve-form">
+          <div class="wizard-step active" data-step="1">
+            <label data-i18n="courseLabel">اختار الكورس</label>
+            <button type="button" id="selection-pill" class="selection-pill" title="تغيير نوع المدرسة أو السنة">حكومي · أولى ✎</button>
+            <div id="course-cards" class="course-grid"><button type="button" class="course-card selected" data-course="js_fast_42"><span class="course-icon">ج</span><span><strong>جافاسكربت</strong><small>42 فصل · مدارس حكومي</small></span></button></div>
+            <p id="course-desc" class="wizard-hint" data-i18n="courseDesc">هتظهر بس الكورسات المناسبة لسنتك. دوس على البطاقة اللي فوق لو عايز تغيّر نوع المدرسة أو السنة.</p>
+          </div>
+          <div class="wizard-step" data-step="2">
+            <label for="phone" data-i18n="phoneLabel">رقم الموبايل</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="05xxxxxxxx" data-i18n-placeholder="phonePlaceholder">
+            <p class="wizard-hint" data-i18n="phoneHint">هنستخدمه بس لو احتجنا نتواصل معاك بخصوص جلستك.</p>
+          </div>
+          <div class="wizard-step" data-step="3">
+            <label for="code" data-i18n="codeLabel">كود الطالب</label>
+            <input id="code" name="code" type="text" autocomplete="one-time-code" placeholder="اكتب كود الطالب بتاع كيريو" data-i18n-placeholder="codePlaceholder">
+            <p class="wizard-hint" data-i18n="codeHint">كود الطالب المخصص لحسابك على كيريو.</p>
+          </div>
+          <div class="wizard-step" data-step="4">
+            <label for="password" data-i18n="passwordLabel">كلمة السر</label>
+            <input id="password" name="password" type="password" autocomplete="current-password" placeholder="اكتب كلمة سر كيريو" data-i18n-placeholder="passwordPlaceholder">
+            <p class="wizard-hint" data-i18n="passwordHint">بياناتك بتتستخدم بس لإكمال الكورس اللي اخترته.</p>
+            <p id="confirm-note" class="confirm-note">تأكيد أخير — هتحل: JavaScript · حكومي · أولى</p>
+          </div>
+          <div class="wizard-nav">
+            <span id="step-indicator" class="step-indicator">الخطوة 1 من 4</span>
+            <div class="wizard-actions">
+              <button id="btn-back" class="button button-ghost" type="button" style="display:none" data-i18n="backButton">رجوع</button>
+              <button id="btn-next" class="button button-primary" type="button"><span data-i18n="nextButton">التالي</span> <span>→</span></button>
+              <button id="start-button" class="button button-primary" type="submit" style="display:none"><span data-i18n="startButton">ابدأ الحل</span> <span>→</span></button>
+            </div>
+          </div>
+          <p id="status" class="status success" role="status" data-i18n="readyStatus">تم اختيار JavaScript. دوس التالي عشان تكمل.</p>
+        </form>
+        <div class="privacy-note"><span>●</span><b data-i18n="privacyNote">حل واحد نشط لكل جهاز</b></div>
+      </div>
+
+      <div class="panel progress-panel">
+        <div class="panel-heading progress-heading"><span class="section-number">02</span><div><h2 data-i18n="progressTitle">التقدم المباشر</h2><p data-i18n="progressSubtitle">تحديثات من جلستك الحالية بس.</p></div><span id="running-badge" class="running-badge" data-i18n="idle">متوقف</span></div>
+        <div class="stats">
+          <div class="stat"><strong id="completed-count">42</strong><span data-i18n="completedItems">عناصر مكتملة</span></div>
+          <div class="stat"><strong id="last-chapter">90042</strong><span data-i18n="latestChapter">آخر فصل</span></div>
+          <div class="stat"><strong id="running" data-i18n="idle">متوقف</strong><span data-i18n="solverStatus">حالة الحل</span></div>
+        </div>
+        <div class="activity-section">
+          <div class="section-title"><h3><span class="live-dot"></span><b data-i18n="activityTitle">النشاط المباشر</b></h3><span id="activity-count">100 أحداث</span></div>
+          <div id="activity" class="activity" aria-live="polite"><div class="activity-line success">  lecture talks answered: 28/28</div><div class="activity-line">  answersjs.json: 28 lecture talks saved</div><div class="activity-line success current">chapter 90018: completed 8/8 (perfect) - saved to qureo-solvedjs.json</div><div class="activity-line current">chapter 90019 (review, 8 questions): solving...</div><div class="activity-line success">  lecture talks answered: 23/23</div><div class="activity-line">  answersjs.json: 23 lecture talks saved</div><div class="activity-line success current">chapter 90019: completed 8/8 (perfect) - saved to qureo-solvedjs.json</div><div class="activity-line current">chapter 90020 (test, 9 questions): solving...</div><div class="activity-line success">  lecture talks answered: 10/10</div><div class="activity-line">  answersjs.json: 10 lecture talks saved</div><div class="activity-line success current">chapter 90020: completed 9/9 (perfect) - saved to qureo-solvedjs.json</div><div class="activity-line current">chapter 90021 (review, 9 questions): solving...</div><div class="activity-line success">  lecture talks answered: 25/25</div><div class="activity-line">  answersjs.json: 25 lecture talks saved</div><div class="activity-line success current">chapter 90021: completed 9/9 (perfect) - saved to qureo-solvedjs.json</div><div class="activity-line current">chapter 90022 (review, 9 questions): solving...</div><div class="activity-line success">  lecture talks answered: 24/24</div><div class="activity-line">  answersjs.json: 24 lecture talks saved</div><div class="activity-line success current">chapter 90022: completed 9/9 (perfect) - saved to qureo-solvedjs.json</div><div class="activity-line current">chapter 90023 (review, 7 questions): solving...</div><div class="activity-line success">  lecture talks answered: 14/14</div><div class="activity-line">  answersjs.json: 14 lecture talks saved</div><div class="activity-line success current">chapter 90023: completed 7/7 (perfect) - saved to qureo-solvedjs.json</div><div class="activity-line current">chapter 90024 (test, 10 questions): solving...</div><div class="activity-line success">  lecture talks answered: 9/9</div><div class="activity-line">  answersjs.json: 9 lecture talks saved</div><div class="activity-line success current">chapter 90024: completed 10/10 (perfect) - saved to qureo-solvedjs.json</div><div class="activity-line current">chapter 90025 (review, 5 questions): solving...</div><div class="activity-line success">  lecture talks answered: 12/12</div><div class="activity-line">  answersjs.json: 12 lecture talks saved</div><div class="activity-line success current">chapter 90025: completed 5/5 (perfect) - saved to qureo-solvedjs.json</div><div class="activity-line current">chapter 90026 (review, 5 questions): solving...</div><div class="activity-line success">  lecture talks answered: 22/22</div><div class="activity-line">  answersjs.json: 22 lecture talks saved</div><div class="activity-line success current">chapter 90026: completed 5/5 (perfect) - saved to qureo-solvedjs.json</div><div class="activity-line current">chapter 90027 (test, 6 questions): solving...</div><div class="activity-line success">  lecture talks answered: 9/9</div><div class="activity-line">  answersjs.json: 9 lecture talks saved</div><div class="activity-line success current">chapter 90027: completed 6/6 (perfect) - saved to qureo-solvedjs.json</div><div class="activity-line current">chapter 90028 (review, 5 questions): solving...</div><div class="activity-line success">  lecture talks answered: 10/10</div><div class="activity-line">  answersjs.json: 10 lecture talks saved</div><div class="activity-line success current">chapter 90028: completed 5/5 (perfect) - saved to qureo-solvedjs.json</div><div class="activity-line current">chapter 90029 (review, 5 questions): solving...</div><div class="activity-line success">  lecture talks answered: 13/13</div><div class="activity-line">  answersjs.json: 13 lecture talks saved</div><div class="activity-line success current">chapter 90029: completed 5/5 (perfect) - saved to qureo-solvedjs.json</div><div class="activity-line current">chapter 90030 (test, 6 questions): solving...</div><div class="activity-line success">  lecture talks answered: 5/5</div><div class="activity-line">  answersjs.json: 5 lecture talks saved</div><div class="activity-line success current">chapter 90030: completed 6/6 (perfect) - saved to qureo-solvedjs.json</div><div class="activity-line current">chapter 90031 (review, 5 questions): solving...</div><div class="activity-line success">  lecture talks answered: 10/10</div><div class="activity-line">  answersjs.json: 10 lecture talks saved</div><div class="activity-line success current">chapter 90031: completed 5/5 (perfect) - saved to qureo-solvedjs.json</div><div class="activity-line current">chapter 90032 (review, 5 questions): solving...</div><div class="activity-line success">  lecture talks answered: 8/8</div><div class="activity-line">  answersjs.json: 8 lecture talks saved</div><div class="activity-line success current">chapter 90032: completed 5/5 (perfect) - saved to qureo-solvedjs.json</div><div class="activity-line current">chapter 90033 (test, 7 questions): solving...</div><div class="activity-line success">  lecture talks answered: 9/9</div><div class="activity-line">  answersjs.json: 9 lecture talks saved</div><div class="activity-line success current">chapter 90033: completed 7/7 (perfect) - saved to qureo-solvedjs.json</div><div class="activity-line current">chapter 90034 (review, 5 questions): solving...</div><div class="activity-line success">  lecture talks answered: 16/16</div><div class="activity-line">  answersjs.json: 16 lecture talks saved</div><div class="activity-line success current">chapter 90034: completed 5/5 (perfect) - saved to qureo-solvedjs.json</div><div class="activity-line current">chapter 90035 (review, 5 questions): solving...</div><div class="activity-line success">  lecture talks answered: 25/25</div><div class="activity-line">  answersjs.json: 25 lecture talks saved</div><div class="activity-line success current">chapter 90035: completed 5/5 (perfect) - saved to qureo-solvedjs.json</div><div class="activity-line current">chapter 90036 (test, 8 questions): solving...</div><div class="activity-line success">  lecture talks answered: 7/7</div><div class="activity-line">  answersjs.json: 7 lecture talks saved</div><div class="activity-line success current">chapter 90036: completed 8/8 (perfect) - saved to qureo-solvedjs.json</div><div class="activity-line current">chapter 90037 (review, 5 questions): solving...</div><div class="activity-line success">  lecture talks answered: 17/17</div><div class="activity-line">  answersjs.json: 17 lecture talks saved</div><div class="activity-line success current">chapter 90037: completed 5/5 (perfect) - saved to qureo-solvedjs.json</div><div class="activity-line current">chapter 90038 (review, 5 questions): solving...</div><div class="activity-line success">  lecture talks answered: 8/8</div><div class="activity-line">  answersjs.json: 8 lecture talks saved</div><div class="activity-line success current">chapter 90038: completed 5/5 (perfect) - saved to qureo-solvedjs.json</div><div class="activity-line current">chapter 90039 (test, 6 questions): solving...</div><div class="activity-line success">  lecture talks answered: 6/6</div><div class="activity-line">  answersjs.json: 6 lecture talks saved</div><div class="activity-line success current">chapter 90039: completed 6/6 (perfect) - saved to qureo-solvedjs.json</div><div class="activity-line current">chapter 90040 (review, 5 questions): solving...</div><div class="activity-line success">  lecture talks answered: 12/12</div><div class="activity-line">  answersjs.json: 12 lecture talks saved</div><div class="activity-line success current">chapter 90040: completed 5/5 (perfect) - saved to qureo-solvedjs.json</div><div class="activity-line current">chapter 90041 (review, 5 questions): solving...</div><div class="activity-line success">  lecture talks answered: 7/7</div><div class="activity-line">  answersjs.json: 7 lecture talks saved</div><div class="activity-line success current">chapter 90041: completed 5/5 (perfect) - saved to qureo-solvedjs.json</div><div class="activity-line current">chapter 90042 (test, 6 questions): solving...</div><div class="activity-line success">  lecture talks answered: 5/5</div><div class="activity-line">  answersjs.json: 5 lecture talks saved</div><div class="activity-line success current">chapter 90042: completed 6/6 (perfect) - saved to qureo-solvedjs.json</div><div class="activity-line success">DONE: 42 perfect chapters</div></div>
+        </div>
+        <div class="chapters-section">
+          <div class="section-title"><h3 data-i18n="chaptersTitle">الفصول</h3><span data-i18n="sessionOnly">جلستك بس</span></div>
+          <div id="chapters" class="chapters"><div class="chapter"><div><strong>الفصل 90001</strong><small title="6">6</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90002</strong><small title="7">7</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90003</strong><small title="6">6</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90004</strong><small title="8">8</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90005</strong><small title="5">5</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90006</strong><small title="5">5</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90007</strong><small title="5">5</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90008</strong><small title="7">7</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90009</strong><small title="5">5</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90010</strong><small title="5">5</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90011</strong><small title="8">8</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90012</strong><small title="6">6</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90013</strong><small title="6">6</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90014</strong><small title="8">8</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90015</strong><small title="5">5</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90016</strong><small title="5">5</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90017</strong><small title="10">10</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90018</strong><small title="8">8</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90019</strong><small title="8">8</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90020</strong><small title="9">9</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90021</strong><small title="9">9</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90022</strong><small title="9">9</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90023</strong><small title="7">7</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90024</strong><small title="10">10</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90025</strong><small title="5">5</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90026</strong><small title="5">5</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90027</strong><small title="6">6</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90028</strong><small title="5">5</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90029</strong><small title="5">5</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90030</strong><small title="6">6</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90031</strong><small title="5">5</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90032</strong><small title="5">5</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90033</strong><small title="7">7</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90034</strong><small title="5">5</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90035</strong><small title="5">5</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90036</strong><small title="8">8</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90037</strong><small title="5">5</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90038</strong><small title="5">5</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90039</strong><small title="6">6</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90040</strong><small title="5">5</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90041</strong><small title="5">5</small></div><span>1 تم حله</span></div><div class="chapter"><div><strong>الفصل 90042</strong><small title="6">6</small></div><span>1 تم حله</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-mark" aria-hidden="true">QUREO</div>
+      <div class="footer-line"><span data-i18n="brandFooter">حل كيريو</span><span data-i18n="footerTagline">انتظار أقل. تعلم أكتر.</span></div>
+    </footer>
+  </main>
+  </div>
+  
+  <script>
+    (function () {
+      var proofForm = document.getElementById("quick-proof-form");
+      var proofFile = document.getElementById("quick-proof-file");
+      var proofMessage = document.getElementById("quick-proof-message");
+      var proofSection = document.getElementById("quick-proof-section");
+      var waitSection = document.getElementById("quick-wait-section");
+
+      if (proofForm) {
+        proofForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          if (!proofFile.files || proofFile.files.length === 0) {
+            proofMessage.textContent = "لازم ترفع سكرين التحويل قبل المتابعة.";
+            proofFile.focus();
+            return;
+          }
+
+          proofMessage.textContent = "تم اختيار السكرين بنجاح.";
+          proofSection.style.display = "none";
+          waitSection.style.display = "block";
+        });
+      }
+    })();
+  </script>
+
+</body></html>
